@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     private Collider2D playerCollider; 
     private Animator animator; 
 
+    public AudioSource deathSound;
+    public AudioSource jumpSound; 
+
     void Start()
     {
        rigidBody = GetComponent<Rigidbody2D>(); 
@@ -29,8 +32,10 @@ public class Player : MonoBehaviour
         bool grounded = Physics2D.IsTouchingLayers(playerCollider, ground);
 
         if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)){
-            if(grounded)
+            if(grounded){
+                jumpSound.Play();
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, jump);
+            }
         }
 
         animator.SetBool("Grounded", grounded);
