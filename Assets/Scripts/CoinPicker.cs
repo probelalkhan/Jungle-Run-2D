@@ -5,10 +5,14 @@ using UnityEngine;
 public class CoinPicker : MonoBehaviour
 {
     private AudioSource coinPickSound; 
+
+    private float coinPoints = 15f; 
+    private ScoreManager scoreManager; 
    
     void Start()
     {
         coinPickSound = GameObject.Find("CoinPickSound").GetComponent<AudioSource>();
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -18,7 +22,7 @@ public class CoinPicker : MonoBehaviour
                 coinPickSound.Stop();
             }
             coinPickSound.Play();
-            //increase score 
+            scoreManager.score += coinPoints;
         }
     }
 
