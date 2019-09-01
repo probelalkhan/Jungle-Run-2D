@@ -272,6 +272,8 @@ MonoBehaviour:
     m_Bits: 256
   deathSound: {fileID: 214078353}
   jumpSound: {fileID: 1079076247}
+  mileStone: 100
+  speedMultipier: 1.1
 --- !u!95 &29190207
 Animator:
   serializedVersion: 3
