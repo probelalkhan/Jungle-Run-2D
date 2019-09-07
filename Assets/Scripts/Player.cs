@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float jump; 
     
     public LayerMask ground; 
+    public LayerMask deathGround; 
     
     private Rigidbody2D rigidBody; 
     private Collider2D playerCollider; 
@@ -19,7 +20,9 @@ public class Player : MonoBehaviour
 
     public float mileStone;
     private float mileStoneCount; 
-    public float speedMultipier;  
+    public float speedMultipier; 
+
+    public GameManager gameManager; 
 
     void Start()
     {
@@ -33,6 +36,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        bool dead = Physics2D.IsTouchingLayers(playerCollider, deathGround);
+
+        if(dead){
+            GameOver();
+        }
+
+
 
         if(transform.position.x > mileStoneCount){
             mileStoneCount += mileStone;
@@ -54,5 +64,9 @@ public class Player : MonoBehaviour
 
         animator.SetBool("Grounded", grounded);
 
+    }
+
+    void GameOver(){
+        gameManager.GameOver();
     }
 }
